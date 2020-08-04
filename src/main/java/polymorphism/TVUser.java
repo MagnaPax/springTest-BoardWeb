@@ -2,23 +2,29 @@ package polymorphism;
 
 public class TVUser {
 	public static void main(String[] args) {
-/*
- * ì§ì ‘ ê°ì²´ ì‚¬ìš© ë°©ì‹ì€ ë‹¤ë¥¸ ê°ì²´ë¥¼ ì‚¬ìš©í•˜ê³ ì í• ë•Œ ì¬ìƒì„± í•´ì•¼í•˜ëŠ” ë¬¸ì œê°€ ìˆìŒ
- * ë‚´ë¶€ ë©”ì„œë“œê¹Œì§€ ë‹¤ ë°”ë€œ
-				ì‚¼ì„± tv ì‚¬ìš©í•˜ê³  ì‹¶ì„ ë•Œ
-				SamsungTV tv = new SamsungTV();
-				tv.powerOn();
-				tv.powerOff();
-				tv.volUp();
-				tv.volDown();
-
-		LgTV tv = new LgTV();
+		/* case #1
+		 * Á÷Á¢ °´Ã¼ »ç¿ë ¹æ½ÄÀº
+		 * ´Ù¸¥ °´Ã¼¸¦ »ç¿ëÇÏ°íÀÚ ÇÒ¶§ Àç »ı¼ºÇØ¾ßÇÏ´Â ¹®Á¦°¡ ÀÖÀ½
+		 * ³»ºÎ ¸Ş¼­µå±îÁö ´Ù ¹Ù²ñ
+		 * »ï¼º TV¸¦ »ç¿ëÇÏ°í ½ÍÀ»¶§
+		SamsungTV tv= new SamsungTV();
+		tv.powerOn();
+		tv.powerOff();
+		tv.volUp();
+		tv.volDown();
+		*/
+		
+		LgTV tv= new LgTV();
+		LgTV tv1= new LgTV();
+		LgTV tv2= new LgTV();
+		LgTV tv3= new LgTV();
+		
 		tv.turnOn();
 		tv.turnOff();
 		tv.soundUp();
 		tv.soundDown();
-*/
 		
 		
 	}
+
 }

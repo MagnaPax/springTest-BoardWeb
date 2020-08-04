@@ -1,20 +1,76 @@
 package polymorphism;
 
-public class SamsungTV implements TV {
+public class SamsungTV implements TV{
+	// init-method
+	private Speaker speaker;
+	private int price;
+	
+	public SamsungTV() {
+		System.out.println("»ï¼º TV ±âº»»ı¼º 1");
+	}
+	/* »ı¼ºÀÚ¸¦ ÀÌ¿ëÇÑ ÀÇÁ¸¼º Ã³¸®
+	public SamsungTV(Speaker speaker) {
+		System.out.println("»ï¼º TV ½ºÇÇÄ¿ »ı¼º 2");
+		this.speaker=speaker;
+	}
+	
+	
+	public SamsungTV(Speaker speaker, int price) {
+		System.out.println("»ï¼º TV ½ºÇÇÄ¿/°¡°İ »ı¼º 3");
+		// ´ÙÁß º¯¼ö ¸ÅÇÎ
+		this.speaker = speaker;
+		this.price = price;
+	}
+	*/
+	
+	
+	public void tvinit() {
+		System.out.println("»ï¼º TV ÃÊ±âÈ­");
+		
+		
+	}
+
+	public Speaker getSpeaker() {
+		return speaker;
+	}
+
+
+	public void setSpeaker(Speaker speaker) {
+		System.out.println("»ï¼º set Speaker");
+		this.speaker = speaker;
+	}
+
+
+	public int getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(int price) {
+		System.out.println("»ï¼º set Price");
+		this.price = price;
+	}
+
 
 	public void powerOn() {
-		System.out.println("ì‚¼ì„± tv ì¼œì§");
+		
+		System.out.println(price+" Â¥¸® »ï¼º TV ÄÑÁü");
 	}
-
 	public void powerOff() {
-		System.out.println("ì‚¼ì„± tv êº¼ì§");
+		System.out.println("»ï¼º TV ²¨Áü");
 	}
-
 	public void volUp() {
-		System.out.println("ì‚¼ì„± tv ë³¼ë¥¨ ì—…");
+		//System.out.println("»ï¼º TV º¼·ı up");
+		//speaker= new SonySpeaker();ÀÇÁ¸¼º ¾øÀÌ Á÷Á¢ »ı¼º
+		speaker.vUp();// ´Ù¸¥ ½ºÇÇÄ¿·Î ±³Ã¼
 	}
-
 	public void volDown() {
-		System.out.println("ì‚¼ì„± tv ë³¼ë¥¨ ë‹¤ìš´");
+		//System.out.println("»ï¼º TV º¼·ı Down");
+		//speaker= new SonySpeaker(); ÀÇÁ¸¼º ¾øÀÌ Á÷Á¢ »ı¼º
+		speaker.vDown();
+	}
+	// destroy-methond
+	public void tvkill() {
+		System.out.println("»ï¼º TV ´ÙÀÌ");
 	}
 }

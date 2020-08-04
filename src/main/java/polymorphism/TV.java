@@ -1,13 +1,13 @@
 package polymorphism;
 
 public interface TV {
-
-	// ëª¨ë“  ì¸í„°í˜ì´ìŠ¤ì— í•´ë‹¹í•˜ëŠ” ê°ì²´ê°€ ê°€ì ¸ì•¼í•  ë©”ì„œë“œ ì •ì˜ 
+	/*
+	 ¸ğµç ÀÎÅÍÆäÀÌ½º¿¡ ÇØ´çÇÏ´Â °´Ã¼°¡ °¡Á®¾ßÇÒ
+	 ¸Ş¼­µå¸¦ Á¤ÀÇ
+	 * 
+	 */
 	public void powerOn();
-
 	public void powerOff();
-
 	public void volUp();
-
 	public void volDown();
 }

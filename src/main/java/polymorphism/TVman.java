@@ -3,18 +3,17 @@ package polymorphism;
 public class TVman {
 
 	public static void main(String[] args) {
-
-		/*
-		 * case #2 ë‹¤í˜•ì„±ì„ ì´ìš©í•œ ê°ì²´ ìƒì„± 
-		 * ë§¤ìš° ì‰½ê²Œ ê°ì²´ êµì²´ ê°€ëŠ¥
-		 */
-		
-//		TV tv = new SamsungTV();
-		TV tv = new SharpTV();
+		/* case #2
+		 * ´ÙÇü¼ºÀ» ÀÌ¿ëÇÑ °´Ã¼ »ı¼º ¹æ½Ä
+		 * ¸Å¿ì ½±°Ô °´Ã¼ ±³Ã¼ °¡´É
+		 * */
+		//TV tv=new SamsungTV();
+		TV tv=new SharpTV();
 		tv.powerOn();
 		tv.powerOff();
 		tv.volUp();
 		tv.volDown();
+
 	}
 
 }

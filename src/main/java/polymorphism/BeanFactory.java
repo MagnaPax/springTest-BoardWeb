@@ -1,12 +1,14 @@
 package polymorphism;
 
-public class BeanFactory {
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
-	// ê°ì²´ ë°˜í™˜ í´ë˜ìŠ¤
+public class BeanFactory {
+	/* °´Ã¼ »ı¼º ¹İÈ¯ Å¬·¡½º
+	 * */
 	public Object getBean(String beanName) {
-		if (beanName.equals("samsung")) {
+		if(beanName.equals("samsung")) {
 			return new SamsungTV();
-		} else if (beanName.equals("sharp")) {
+		}else if(beanName.equals("sharp")) {
 			return new SharpTV();
 		}
 		return null;
