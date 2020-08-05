@@ -1,12 +1,23 @@
 package com.springbook.biz.common;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.util.StopWatch;
 
 public class AroundAdvice {
+
 	public Object aroundLog(ProceedingJoinPoint pjp) throws Throwable {
-		System.out.println("[공통로그 사전처리1]");
+		String method = pjp.getSignature().getName();
+
+		StopWatch stopWatch = new StopWatch();
+
+		System.out.println("[처리시작]");
+		stopWatch.start();
+
 		Object retObject = pjp.proceed();
-		System.out.println("[공통로그 사후처리2]");
+
+		stopWatch.stop();
+		System.out.println("[사후처리]" + method + " delay" + stopWatch.getTotalTimeMillis() + "(ms초)");
+
 		return retObject;
 	}
 }

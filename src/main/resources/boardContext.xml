@@ -20,7 +20,7 @@
 	
 	<bean id="around" class="com.springbook.biz.common.AroundAdvice"></bean>
 	
-	<bean id="log" class="com.springbook.biz.common.LogAdvice2"></bean>
+	<bean id="log" class="com.springbook.biz.common.LogAdvice"></bean>
 	
 	<aop:config>
 		<aop:pointcut id="allPointcut"
@@ -30,8 +30,24 @@
 			expression="execution(* com.springbook.biz..*Impl.get*(..))"/>
 			
 		<aop:aspect ref="around">
-			<aop:around pointcut-ref="allPointcut" method="aroundLog"/>
-		</aop:aspect>		
+			<aop:around pointcut-ref="getPointcut" method="aroundLog"/>
+		</aop:aspect>
+<!--
+-->		
+
+<!--
+		<aop:aspect ref="log">
+			<aop:before pointcut-ref="getPointcut" method="printLog"/>
+		</aop:aspect>
+-->		
+
+<!--
+		<aop:aspect ref="log">
+			<aop:after-returning pointcut-ref="getPointcut" method="afterBoardLog" 
+			returning="returnObj"
+			/>
+		</aop:aspect>
+-->		
+				
 	</aop:config>
-	
 </beans>
