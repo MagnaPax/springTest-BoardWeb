@@ -8,7 +8,7 @@
 </head>
 <body>
 <div>
-<form action="login_proc.jsp">
+<form action="login_proc.jsp" method="post">
 <ul>
 	<li><label>아이디</label>
 	<input type="text" id="userid" name="userid"/>
