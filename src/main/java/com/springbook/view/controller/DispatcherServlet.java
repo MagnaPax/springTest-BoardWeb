@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.springbook.biz.user.UserVO;
+import com.springbook.biz.user.impl.UserDAO;
+
 /**
  * Servlet implementation class DispatcherServlet
  */
@@ -18,6 +21,31 @@ public class DispatcherServlet extends HttpServlet {
 	public DispatcherServlet() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	private void loginPrs(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//1. 사용자 정보 입력
+		String id = request.getParameter("userid");
+		String pw = request.getParameter("userpw");
+		System.out.println("id:" + id + "pw:" + pw);
+		//2. DB 연동처리
+		UserVO vo = new UserVO();
+		vo.setUserid(id);
+		vo.setUserpw(pw);
+		UserDAO userDAO = new UserDAO();
+		UserVO user = userDAO.getLoger(vo);
+
+		//3. 
+		if (user == null) {
+			//로그인 실패
+			System.out.println("로그인실패");
+			response.sendRedirect("index.jsp");
+		} else {
+			//로그인 성공
+			System.out.println("로그인성공");
+			response.sendRedirect("userList.jsp");
+		}
 	}
 
 	/**
@@ -37,10 +65,10 @@ public class DispatcherServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		process(request, response);
 	}
 
-	private void process(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void process(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		String uri = request.getRequestURI();
 		String path = uri.substring(uri.lastIndexOf("/"));
 		System.out.println("Path:" + path);
@@ -48,7 +76,8 @@ public class DispatcherServlet extends HttpServlet {
 
 		switch (path) {
 		case "/login.do":
-			resTxt = "로그인 처리";
+			loginPrs(request, response);
+			resTxt = "로그인1 처리";
 			break;
 		case "/logout.do":
 			resTxt = "로그 아웃 처리";
