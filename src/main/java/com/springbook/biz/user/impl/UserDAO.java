@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.springbook.biz.common.JDBCUtil;
@@ -27,6 +29,31 @@ public class UserDAO {
 
 	// for CRUD
 	// insert
+	private JdbcTemplate jdbcTemplate = null;
+
+	public UserDAO() {
+		JdbcTemplate jdbcTemplate = new JdbcTemplate();
+	}
+
+	public void jinsertUser(UserVO vo) {
+
+		int cnt = jdbcTemplate.update(U_INSERT, vo.getUname(), vo.getUserid(), vo.getUserpw(), vo.getUemail());
+		System.out.println("j인서트" + cnt);
+	}
+
+	public void jupdateUser(UserVO vo) {
+
+		int cnt = jdbcTemplate.update(U_UPDATE, vo.getUname(), vo.getUserid(), vo.getUserpw(), vo.getUemail(),
+				vo.getUidx());
+		System.out.println("j업데이트" + cnt);
+	}
+
+	public void jcountUser() {
+		String u_CNT = "select count(*) from USERS";
+		int cnt = jdbcTemplate.queryForObject(u_CNT, Integer.class);
+		System.out.println("j업데이트" + cnt);
+	}
+
 	public void insertUser(UserVO vo) {
 		System.out.println("==> inert 작업");
 		try {

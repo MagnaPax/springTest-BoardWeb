@@ -8,43 +8,43 @@ import org.springframework.stereotype.Service;
 import com.springbook.biz.user.UserService;
 import com.springbook.biz.user.UserVO;
 
-@Service("userService_old")
-public class UserServiceImpl implements UserService {
+@Service("userService")
+public class UserSpringImpl implements UserService {
 	@Autowired
-	private UserDAO userDAO;
+	private UserDAOSpring userDAOSpring;
 
 	// context injection 에 사용하기 위한 setter
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
+	public void setUserDAO(UserDAOSpring userDAOSpring) {
+		this.userDAOSpring = userDAOSpring;
 	}
 
 	@Override
 	public void insertUser(UserVO vo) {
-		userDAO.insertUser(vo);
+		userDAOSpring.insertUser(vo);
 
 	}
 
 	@Override
 	public void updateUser(UserVO vo) {
-		userDAO.updateUser(vo);
+		userDAOSpring.updateUser(vo);
 
 	}
 
 	@Override
 	public void deleteUser(UserVO vo) {
-		userDAO.deleteUser(vo);
+		userDAOSpring.deleteUser(vo);
 
 	}
 
 	@Override
 	public UserVO getUser(UserVO vo) {
-		return userDAO.getUser(vo);
+		return userDAOSpring.getUser(vo);
 
 	}
 
 	@Override
 	public List<UserVO> getUserList(UserVO vo) {
-		return userDAO.getUserList(vo);
+		return userDAOSpring.getUserList(vo);
 	}
 
 }
