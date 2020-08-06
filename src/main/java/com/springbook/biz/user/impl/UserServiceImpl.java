@@ -2,38 +2,49 @@ package com.springbook.biz.user.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.springbook.biz.user.UserService;
 import com.springbook.biz.user.UserVO;
 
+@Service("userService")
 public class UserServiceImpl implements UserService {
-private UserDAO userDAO;
-// context injection 에 사용하기 위한 setter
-	public  void  setUserDAO(UserDAO userDAO) {
-		this.userDAO=userDAO;
+	@Autowired
+	private UserDAO userDAO;
+
+	// context injection 에 사용하기 위한 setter
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
 	}
- @Override
+
+	@Override
 	public void insertUser(UserVO vo) {
-	 userDAO.insertUser(vo);
-		
+		userDAO.insertUser(vo);
+
 	}
- @Override
+
+	@Override
 	public void updateUser(UserVO vo) {
-	 userDAO.updateUser(vo);
-		
+		userDAO.updateUser(vo);
+
 	}
- @Override
+
+	@Override
 	public void deleteUser(UserVO vo) {
-	userDAO.deleteUser(vo);
-		
+		userDAO.deleteUser(vo);
+
 	}
- @Override
+
+	@Override
 	public UserVO getUser(UserVO vo) {
-	 return userDAO.getUser(vo);
-		
+		return userDAO.getUser(vo);
+
 	}
- @Override
+
+	@Override
 	public List<UserVO> getUserList(UserVO vo) {
-	 return userDAO.getUserList(vo);
+		return userDAO.getUserList(vo);
 	}
- 
+
 }
