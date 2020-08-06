@@ -13,6 +13,9 @@ import org.springframework.stereotype.Repository;
 import com.springbook.biz.common.JDBCUtil;
 import com.springbook.biz.user.UserVO;
 
+import oracle.net.aso.i;
+import sun.print.PSPrinterJob.PluginPrinter;
+
 @Repository("userDAO")
 public class UserDAO {
 	//for JDBC
@@ -25,34 +28,11 @@ public class UserDAO {
 	private final String U_UPDATE = "update USERS set uname=?," + "userid=?," + "userpw=?," + "uemail=? where idx=?";
 	private final String U_DELETE = "delete from USERS where idx=?";
 	private final String U_GET = "select * from USERS where idx=?";
+
+	private final String U_LOGER = "select * from USERS where userid=? and userpw=?";
 	private final String U_LIST = "select * from USERS order by idx desc";
 
 	// for CRUD
-	// insert
-	private JdbcTemplate jdbcTemplate = null;
-
-	public UserDAO() {
-		JdbcTemplate jdbcTemplate = new JdbcTemplate();
-	}
-
-	public void jinsertUser(UserVO vo) {
-
-		int cnt = jdbcTemplate.update(U_INSERT, vo.getUname(), vo.getUserid(), vo.getUserpw(), vo.getUemail());
-		System.out.println("j인서트" + cnt);
-	}
-
-	public void jupdateUser(UserVO vo) {
-
-		int cnt = jdbcTemplate.update(U_UPDATE, vo.getUname(), vo.getUserid(), vo.getUserpw(), vo.getUemail(),
-				vo.getUidx());
-		System.out.println("j업데이트" + cnt);
-	}
-
-	public void jcountUser() {
-		String u_CNT = "select count(*) from USERS";
-		int cnt = jdbcTemplate.queryForObject(u_CNT, Integer.class);
-		System.out.println("j업데이트" + cnt);
-	}
 
 	public void insertUser(UserVO vo) {
 		System.out.println("==> inert 작업");
@@ -121,7 +101,34 @@ public class UserDAO {
 				user.setUemail(rs.getString("UEMAIL"));
 				user.setUstat(rs.getInt("USTAT"));
 				user.setUauth(rs.getInt("UAUTH"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(stmt, conn);
+		}
+		return user;
+	}
 
+	public UserVO getLoger(UserVO vo) {
+		System.out.println("==> Loger 작업");
+		UserVO user = null;
+		try {
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(U_LOGER);
+			stmt.setString(1, vo.getUserid());
+			stmt.setString(2, vo.getUserpw());
+
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				user = new UserVO();
+				user.setUidx(rs.getInt("IDX"));
+				user.setUname(rs.getString("UNAME"));
+				user.setUserid(rs.getString("USERID"));
+				user.setUserpw(rs.getString("USERPW"));
+				user.setUemail(rs.getString("UEMAIL"));
+				user.setUstat(rs.getInt("USTAT"));
+				user.setUauth(rs.getInt("UAUTH"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
